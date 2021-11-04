@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using System;
+using FluentAssertions.Equivalency;
 using Xunit;
 
 namespace Exercises
@@ -16,7 +17,7 @@ namespace Exercises
             int result = TheAnswerToTheUltimateQuestionOfLifeTheUniverseAndEverything();
 
             // Assert
-            throw new NotImplementedException();
+            result.Should().Be(expected);
         }
 
         [Fact]
@@ -26,7 +27,7 @@ namespace Exercises
             int result = GetPrimeGreaterThan2();
 
             // Assert
-            throw new NotImplementedException();
+            result.Should().Match(x => x % 2 > 0);
         }
 
         [Fact]
@@ -42,7 +43,7 @@ namespace Exercises
             account.DonateToScouts();
 
             // Assert
-            throw new NotImplementedException();
+            account.Balance.Should().BePositive();
         }
 
         [InlineData(2020)]
@@ -54,7 +55,7 @@ namespace Exercises
             int result = DateTime.DaysInMonth(year, 2);
 
             // Assert
-            throw new NotImplementedException();
+            result.Should().BeInRange(28, 29);
         }
 
         [Fact]
@@ -67,7 +68,7 @@ namespace Exercises
             double primarySchoolPi = GetPrimarySchoolPi();
 
             // Assert
-            throw new NotImplementedException();
+            primarySchoolPi.Should().BeApproximately(pi, 100);
         }
 
         #region Helpers

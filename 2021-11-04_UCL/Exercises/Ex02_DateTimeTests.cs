@@ -18,7 +18,7 @@ namespace Exercises
             DateTime date = EasterSunday();
 
             // Assert
-            throw new NotImplementedException();
+            date.Should().BeSameDateAs(expected);
         }
 
         [Fact]
@@ -31,7 +31,8 @@ namespace Exercises
             DateTime date = StartOfThisPresentation();
 
             // Assert
-            throw new NotImplementedException();
+
+            date.Should().BeCloseTo(expectedStartOfLecture, TimeSpan.FromMinutes(5));
         }
 
         [Fact]
@@ -45,7 +46,7 @@ namespace Exercises
             DateTime date = RandomDateFromJuleKalender();
 
             // Assert
-            throw new NotImplementedException();
+            date.Should().BeOnOrAfter(firstDayToOpen).And.BeOnOrBefore(lastDayToOpen);
         }
 
         [Fact]
@@ -54,7 +55,7 @@ namespace Exercises
             // Express expectedEndOfDst using the Fluent API from FluentAssertions.Extensions
 
             // Arrange
-            DateTimeOffset expectedEndOfDst = default;
+            DateTimeOffset expectedEndOfDst = 25.October(2021).At(3, 0, 0, 0);
 
             // Act
             DateTimeOffset date = DaylightSavingTimeEnd();
@@ -70,7 +71,7 @@ namespace Exercises
 
         private static DateTime RandomDateFromJuleKalender() => new(2021, 12, new Random().Next(01, 24));
 
-        private static DateTimeOffset DaylightSavingTimeEnd() => new(2021, 10, 31, 03, 00, 00, TimeSpan.FromHours(2));
+        private static DateTimeOffset DaylightSavingTimeEnd() => new(2021, 10, 25, 03, 00, 00, TimeSpan.FromHours(2));
         #endregion
     }
 }

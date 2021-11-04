@@ -15,7 +15,7 @@ namespace Exercises
             var result = new[] { 41, 42, 43 };
 
             // Assert
-            throw new NotImplementedException();
+            result.Should().BeInAscendingOrder();
         }
 
         [Fact]
@@ -31,7 +31,7 @@ namespace Exercises
             var result = new[] { 41, 42, 43 };
 
             // Assert
-            throw new NotImplementedException();
+            result.Should().BeEquivalentTo(expected);
         }
 
         [Fact]
@@ -53,7 +53,7 @@ namespace Exercises
             Person[] result = GetPersons();
 
             // Assert
-            throw new NotImplementedException();
+            result.Should().Equal(expected, (a, b) => a.Name.Equals(b.Name));
         }
 
         [Fact]
@@ -66,7 +66,7 @@ namespace Exercises
             object[] objects = GetObjects();
 
             // Assert
-            throw new NotImplementedException();
+            objects.Should().HaveCount(2);
         }
 
         [Fact]
@@ -79,7 +79,7 @@ namespace Exercises
             var result = GetObjects();
 
             // Assert
-            throw new NotImplementedException();
+            result.Should().ContainSingle(o => o.Equals(expected));
         }
 
         [Fact]
@@ -92,7 +92,7 @@ namespace Exercises
             object[] objects = GetObjects();
 
             // Assert
-            throw new NotImplementedException();
+            objects.Should().EndWith(expected);
         }
 
         [Fact]
@@ -109,7 +109,11 @@ namespace Exercises
             object[] objects = GetObjects();
 
             // Assert
-            throw new NotImplementedException();
+
+            objects.Should()
+                .SatisfyRespectively(
+                    s => s.ToString()?.Length.Should().Be(expectedLength),
+                    o => o.Should().Be(expectedNumber));
         }
 
         [Fact]
@@ -122,7 +126,8 @@ namespace Exercises
             object[] objects = GetRandomObjects();
 
             // Assert
-            throw new NotImplementedException();
+            objects.Should()
+                .BeEquivalentTo(expected, opt => opt.WithoutStrictOrdering());
         }
 
         [Fact]
@@ -135,7 +140,7 @@ namespace Exercises
             object[] objects = GetObjects();
 
             // Assert
-            throw new NotImplementedException();
+            objects.Should().BeEquivalentTo(expectedNumbers, opt => opt.WithStrictOrdering());
         }
 
         #region Helpers

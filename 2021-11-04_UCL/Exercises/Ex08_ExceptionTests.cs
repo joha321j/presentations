@@ -18,7 +18,7 @@ namespace Exercises
             Action act = () => subject.DoesThrow();
 
             // Assert
-            throw new NotImplementedException();
+            act.Should().Throw<InvalidOperationException>();
         }
 
         [Fact]
@@ -26,7 +26,7 @@ namespace Exercises
         {
             // *  Throw InvalidOperationException,
             //  * which exception message contains "foobar"
-            // * the InvalidOperationException has an InnerException, 
+            // * the InvalidOperationException has an InnerException,
             //  * which is exactly DivideByZeroException,
             //  * which exception message contains "Dark Side"
 
@@ -37,7 +37,11 @@ namespace Exercises
             Action act = () => subject.DoesThrow();
 
             // Assert
-            throw new NotImplementedException();
+            act.Should()
+                .Throw<InvalidOperationException>()
+                .WithMessage("*foobar*")
+                .WithInnerExceptionExactly<DivideByZeroException>()
+                .WithMessage("*Dark Side*");
         }
 
         #region Helpers
